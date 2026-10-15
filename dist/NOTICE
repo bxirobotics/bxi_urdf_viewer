@@ -6,7 +6,7 @@ https://github.com/fan-ziqi/robot_viewer
 Original authors retain their copyright. The original Apache License 2.0
 is preserved in LICENSE. The original README is preserved in README.upstream.md.
 
-BXI Robotics modifications (2026): BXI branding and model selection,
+BXI Robotics modifications (2026): BXI branding, model selection and front-view framing,
 automated model synchronization and reference validation, lossless compressed
 and shared model assets, CI packaging, and ESA Pages deployment configuration.
 Modified upstream files carry BXI notices or are identified by their BXI package,
