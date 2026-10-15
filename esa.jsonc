@@ -1,5 +1,5 @@
 {
-  "name": "bxi-urdf-viewer",
+  "name": "bxi_urdf_viewer",
   "installCommand": "",
   "buildCommand": "",
   "assets": {
