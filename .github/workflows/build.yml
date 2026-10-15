@@ -17,7 +17,26 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.models.outputs.changed }}
+      commit: ${{ steps.models.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the four model directories against the published snapshot
+        id: models
+        run: node scripts/check-model-updates.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
   build:
+    needs: check
+    if: ${{ !cancelled() && (needs.check.result == 'skipped' || (needs.check.result == 'success' && needs.check.outputs.changed == 'true')) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +51,7 @@ jobs:
         run: pnpm build
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          BXI_MODELS_REF: ${{ needs.check.outputs.commit || 'main' }}
       - uses: actions/upload-artifact@v4
         with:
           name: bxi-urdf-viewer
@@ -40,7 +60,7 @@ jobs:
           retention-days: 14
 
   publish:
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    if: ${{ !cancelled() && needs.build.result == 'success' && github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
     needs: build
     runs-on: ubuntu-latest
     permissions:

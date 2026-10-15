@@ -41,27 +41,41 @@ export function planModelFiles(model, xml, tree) {
     return { files: [...files].sort(([a], [b]) => a.localeCompare(b)), repairs };
 }
 
-async function request(url, json = false) {
+export async function request(url, json = false) {
     const headers = { 'User-Agent': 'bxi-urdf-viewer' };
     if (url.startsWith('https://api.github.com/') && process.env.GITHUB_TOKEN) {
         headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     }
     const response = await fetch(url, { headers, signal: AbortSignal.timeout(60000) });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}: ${url}`);
+    if (!response.ok) throw Object.assign(new Error(`${response.status} ${response.statusText}: ${url}`), { status: response.status });
     return json ? response.json() : Buffer.from(await response.arrayBuffer());
 }
 
-export async function syncModels() {
+export function getResourceTrees(tree) {
+    return Object.fromEntries(models.map(({ id }) => {
+        const path = `resources/${id}/urdf`;
+        const entry = tree.find(item => item.path === path && item.type === 'tree');
+        if (!entry) throw new Error(`Missing model resource directory: ${path}`);
+        return [path, entry.sha];
+    }));
+}
+
+export async function getModelSnapshot() {
     const ref = process.env.BXI_MODELS_REF || 'main';
     const { sha: commit } = await request(`https://api.github.com/repos/${repository}/commits/${encodeURIComponent(ref)}`, true);
     const { tree, truncated } = await request(`https://api.github.com/repos/${repository}/git/trees/${commit}?recursive=1`, true);
     if (truncated) throw new Error('GitHub returned an incomplete resource tree');
+    return { commit, tree, resourceTrees: getResourceTrees(tree) };
+}
+
+export async function syncModels() {
+    const { commit, tree, resourceTrees } = await getModelSnapshot();
     const rawBase = `https://raw.githubusercontent.com/${repository}/${commit}/`;
     const cache = new URL('../.cache/', import.meta.url);
     const output = new URL('../public/robots/', import.meta.url);
     await mkdir(cache, { recursive: true });
     const staging = await mkdtemp(fileURLToPath(new URL('robots-', cache)));
-    const catalog = { source: { repository, commit }, defaultModel: models[0].id, models: [] };
+    const catalog = { source: { repository, commit, resourceTrees }, defaultModel: models[0].id, models: [] };
     const assets = new Map();
     try {
         for (const model of models) {
