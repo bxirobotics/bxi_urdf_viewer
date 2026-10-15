@@ -1,7 +1,13 @@
 {
   "source": {
     "repository": "bxirobotics/bxi_controller_ros2",
-    "commit": "fd74d69a7ec649f4a5df9cd502f669e4ab0742b0"
+    "commit": "fd74d69a7ec649f4a5df9cd502f669e4ab0742b0",
+    "resourceTrees": {
+      "resources/elf3_dof31/urdf": "527e97399bd197b24358f95d1b49b0860d874bee",
+      "resources/elf3_dof31_hand/urdf": "77d8f927355784dc671fd0f8a10ed4a3bae612b0",
+      "resources/elf3_dof29/urdf": "6b5ea241d195146785dd0aca2dbe3b6b95da309f",
+      "resources/elf3_dof29_hand/urdf": "d5bc1604b64cc56d6913652529cee4e3fb8f6c9d"
+    }
   },
   "defaultModel": "elf3_dof31",
   "models": [
