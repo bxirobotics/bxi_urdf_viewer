@@ -1,7 +1,13 @@
 {
-  "name": "bxi-urdf-viewer",
-  "installCommand": "npx --yes pnpm@9.0.0 install --frozen-lockfile",
-  "buildCommand": "npx --yes pnpm@9.0.0 run build",
+  // Match the project name entered in the ESA console.
+  "name": "bxi_urdf_viewer",
+
+  // Source builds on main install dependencies in the build phase, like bxi_demo.
+  "installCommand": "",
+  "buildCommand": "npx --yes pnpm@9.0.0 install --frozen-lockfile && npx --yes pnpm@9.0.0 run build",
+
+  // Pure static Pages site: no function entry is needed.
+  // For CI-built deployment, choose site instead of main in the ESA console.
   "assets": {
     "directory": "./dist"
   }

@@ -25,7 +25,7 @@ for (const packages of Object.values(report)) {
 }
 await writeFile(resolve(directory, 'THIRD_PARTY_NOTICES.txt'), notices);
 await writeFile(resolve(directory, 'esa.jsonc'), JSON.stringify({
-    name: 'bxi-urdf-viewer', installCommand: '', buildCommand: '', assets: { directory: './' }
+    name: 'bxi_urdf_viewer', installCommand: '', buildCommand: '', assets: { directory: './' }
 }, null, 2) + '\n');
 
 const files = await readdir(directory, { recursive: true, withFileTypes: true });

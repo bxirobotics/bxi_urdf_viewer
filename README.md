@@ -62,6 +62,7 @@ corepack pnpm preview
 
 | 设置 | 值 |
 |---|---|
+| ESA 项目名称 | `bxi_urdf_viewer` |
 | GitHub 仓库 | `bxirobotics/bxi_urdf_viewer` |
 | 生产分支 | `site` |
 | 根目录 | `/` |
@@ -70,7 +71,9 @@ corepack pnpm preview
 | 静态资源目录 | `./dist` |
 | 函数入口 | 留空 |
 
-`site` 分支自带 `esa.jsonc`，已声明跳过安装和构建。首次需在 ESA 控制台授权该仓库并选定生产分支，之后 CI 生成的新提交会触发 ESA 自动部署。请关闭其他分支的预览构建，避免重复构建 `main`。如选择 `main`，根目录的 `esa.jsonc` 也支持完整源码构建，但需要构建环境能够访问 GitHub 和 npm。
+`site` 分支自带 `esa.jsonc`，已声明跳过安装和构建。首次需在 ESA 控制台授权该仓库并选定生产分支，之后 CI 生成的新提交会触发 ESA 自动部署。请关闭其他分支的预览构建，避免重复构建 `main`。函数文件路径和环境变量留空；Node.js 版本保持 `22.x`。
+
+如保持截图中的 `main` 生产分支，根目录的 `esa.jsonc` 同样支持完整源码构建：项目名为 `bxi_urdf_viewer`，独立安装阶段留空，在构建命令中安装锁定的 pnpm 依赖并构建 `dist/`。此方式需要 ESA 构建环境能够访问 GitHub 和 npm；每日 CI 同步的新产物发布在 `site` 分支。
 
 官方文档：[GitHub 导入与生产分支](https://help.aliyun.com/zh/edge-security-acceleration/esa/user-guide/connect-pages-to-github)、[构建配置](https://help.aliyun.com/zh/edge-security-acceleration/esa/user-guide/build-pages)、[当前平台限制](https://help.aliyun.com/zh/edge-security-acceleration/esa/user-guide/what-is-functions-and-pages/)。ESA 的服务额度、费用和域名接入条件以账号所选服务条款为准；软件许可证不涵盖托管服务费用或授权。
 
