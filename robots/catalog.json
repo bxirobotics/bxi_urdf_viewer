@@ -1,0 +1,931 @@
+{
+  "source": {
+    "repository": "bxirobotics/bxi_controller_ros2",
+    "commit": "fd74d69a7ec649f4a5df9cd502f669e4ab0742b0"
+  },
+  "defaultModel": "elf3_dof31",
+  "models": [
+    {
+      "id": "elf3_dof31",
+      "label": "ELF3 · 31 DOF",
+      "urdf": "elf3_dof31/urdf/elf3.urdf",
+      "files": [
+        {
+          "path": "elf3_dof31/urdf/elf3.urdf",
+          "url": "assets/63d64421f1a2b6b5840bd599b0725ed1ff1dd74f.urdf",
+          "sizeBytes": 32222,
+          "downloadBytes": 32222
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/head_y_link.STL",
+          "url": "assets/3e7ce0a30f6d6182775ecdf888ef2a1285670097.STL.gz",
+          "sizeBytes": 4581784,
+          "downloadBytes": 1737421
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/head_z_link.STL",
+          "url": "assets/ddda71b9e752dda4b6dfdb0734bcb9aad02a34b7.STL.gz",
+          "sizeBytes": 485484,
+          "downloadBytes": 124579
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_ankle_x_link.STL",
+          "url": "assets/3e483c0e736c17ed9c36b33c004c052c1ca780f5.STL.gz",
+          "sizeBytes": 666384,
+          "downloadBytes": 154560
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_ankle_y_link.STL",
+          "url": "assets/1b1564f11f3afc5737320f1549e71bd54a22ace9.STL.gz",
+          "sizeBytes": 39484,
+          "downloadBytes": 7602
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_elbow_y_link.STL",
+          "url": "assets/3e6de3a5a4e99edd427ffe85cd803e0bfbd9bdd0.STL.gz",
+          "sizeBytes": 304184,
+          "downloadBytes": 69268
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_hip_x_link.STL",
+          "url": "assets/07e55e3588f351d1884003802394902b76860cd1.STL.gz",
+          "sizeBytes": 321484,
+          "downloadBytes": 72669
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_hip_y_link.STL",
+          "url": "assets/5b5f06eec0bcea5cfc888b40febd177b2c40875c.STL.gz",
+          "sizeBytes": 1175184,
+          "downloadBytes": 330060
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_hip_z_link.STL",
+          "url": "assets/7a2ec3f88a6a8056433da917aa8921cf536a9371.STL.gz",
+          "sizeBytes": 2236684,
+          "downloadBytes": 592921
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_knee_y_link.STL",
+          "url": "assets/e5b1467f3e23a5df81693cff296bb05099a38898.STL.gz",
+          "sizeBytes": 3479984,
+          "downloadBytes": 969655
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_shoulder_x_link.STL",
+          "url": "assets/fdd6d518547ffb2e8aaa61c97884caf368aeb5e9.STL.gz",
+          "sizeBytes": 323784,
+          "downloadBytes": 74623
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_shoulder_y_link.STL",
+          "url": "assets/54c2d955eb1d2ea11a86b15ec9bc763a6ab28580.STL.gz",
+          "sizeBytes": 1072784,
+          "downloadBytes": 298945
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_shoulder_z_link.STL",
+          "url": "assets/c0172dfb81181dd936ddc06e22a280e4bd21ec13.STL.gz",
+          "sizeBytes": 2131484,
+          "downloadBytes": 573738
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_wrist_x_link_part.STL",
+          "url": "assets/485af5d7f66ce3fafd0c1c0167e6de476c5fcf49.STL.gz",
+          "sizeBytes": 861784,
+          "downloadBytes": 305381
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_wrist_x_link.STL",
+          "url": "assets/17eccfccab41fa368331b9edfdf047878a3d8ef4.STL.gz",
+          "sizeBytes": 2839984,
+          "downloadBytes": 810486
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_wrist_y_link.STL",
+          "url": "assets/74e69d6382ee0b3adfe246b8a599a7fe1df1e688.STL.gz",
+          "sizeBytes": 1000284,
+          "downloadBytes": 290637
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/l_wrist_z_link.STL",
+          "url": "assets/58130605d23548bca569281f45fd4b7fe261dcd2.STL.gz",
+          "sizeBytes": 187484,
+          "downloadBytes": 51304
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_ankle_x_link.STL",
+          "url": "assets/3e483c0e736c17ed9c36b33c004c052c1ca780f5.STL.gz",
+          "sizeBytes": 666384,
+          "downloadBytes": 154560
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_ankle_y_link.STL",
+          "url": "assets/32a10f78d5f6b87368cf4ab35a003defadef399e.STL.gz",
+          "sizeBytes": 39484,
+          "downloadBytes": 7612
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_elbow_y_link.STL",
+          "url": "assets/67c0c2ac3c66eac438f70402ac249284b2db3cbe.STL.gz",
+          "sizeBytes": 304184,
+          "downloadBytes": 69203
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_hip_x_link.STL",
+          "url": "assets/c6dc8013d2efc8dc3b8c84e5b18f7633100a0276.STL.gz",
+          "sizeBytes": 321484,
+          "downloadBytes": 72657
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_hip_y_link.STL",
+          "url": "assets/ee0cb46812fe6579056894fc35d257118b93bf7f.STL.gz",
+          "sizeBytes": 1174184,
+          "downloadBytes": 333223
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_hip_z_link.STL",
+          "url": "assets/04883d41b6a5931ede7029f5a23f1d373d137ec8.STL.gz",
+          "sizeBytes": 2234384,
+          "downloadBytes": 591478
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_knee_y_link.STL",
+          "url": "assets/d9e6006067a6db90a0d82765967fcd1368cb3201.STL.gz",
+          "sizeBytes": 3479484,
+          "downloadBytes": 976646
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_shoulder_x_link.STL",
+          "url": "assets/666f17804f99c899092b8044168bda07c177657c.STL.gz",
+          "sizeBytes": 323784,
+          "downloadBytes": 74514
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_shoulder_y_link.STL",
+          "url": "assets/0053a34fe266b39ab52b8b463725422267865a94.STL.gz",
+          "sizeBytes": 1073384,
+          "downloadBytes": 301825
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_shoulder_z_link.STL",
+          "url": "assets/98d46ff391aea33435c53b8c5d6f5ab14288bb85.STL.gz",
+          "sizeBytes": 2132184,
+          "downloadBytes": 570399
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_wrist_x_link_part.STL",
+          "url": "assets/908ad3296e2587d8775a42df5501cb75ea76055d.STL.gz",
+          "sizeBytes": 861384,
+          "downloadBytes": 304567
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_wrist_x_link.STL",
+          "url": "assets/ce4a03c2ddbb478a42545daafada4e1ddc0925b9.STL.gz",
+          "sizeBytes": 2839984,
+          "downloadBytes": 738756
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_wrist_y_link.STL",
+          "url": "assets/3ceb87563d9e1779aa36f941f2e9e7728fe4e131.STL.gz",
+          "sizeBytes": 1000284,
+          "downloadBytes": 258984
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/r_wrist_z_link.STL",
+          "url": "assets/335f6b3b58bf99fa46e132c24a9d5f9c72bbccda.STL.gz",
+          "sizeBytes": 187484,
+          "downloadBytes": 45514
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/torso_link.STL",
+          "url": "assets/07c03a279af79a512272f84336dd615c68140869.STL.gz",
+          "sizeBytes": 5000034,
+          "downloadBytes": 1950894
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/waist_x_link.STL",
+          "url": "assets/93439784adb09bd6469d4b5c857df492acc0f180.STL.gz",
+          "sizeBytes": 445884,
+          "downloadBytes": 103763
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/waist_y_link.STL",
+          "url": "assets/ecf27ad243202eb926887152e23497a0a8502f9b.STL.gz",
+          "sizeBytes": 52684,
+          "downloadBytes": 10943
+        },
+        {
+          "path": "elf3_dof31/urdf/meshes/waist_z_link.STL",
+          "url": "assets/7f6c380e957086133f9aeaf0649aa7b425af3773.STL.gz",
+          "sizeBytes": 3542884,
+          "downloadBytes": 951329
+        }
+      ],
+      "repairs": [],
+      "sizeBytes": 47420028,
+      "downloadBytes": 14012938
+    },
+    {
+      "id": "elf3_dof31_hand",
+      "label": "ELF3 · 31 DOF · Hand",
+      "urdf": "elf3_dof31_hand/urdf/elf3.urdf",
+      "files": [
+        {
+          "path": "elf3_dof31_hand/urdf/elf3.urdf",
+          "url": "assets/18219855691310438ebe876048ae396ed50b8135.urdf",
+          "sizeBytes": 32190,
+          "downloadBytes": 32190
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/head_y_link.STL",
+          "url": "assets/3e7ce0a30f6d6182775ecdf888ef2a1285670097.STL.gz",
+          "sizeBytes": 4581784,
+          "downloadBytes": 1737421
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/head_z_link.STL",
+          "url": "assets/ddda71b9e752dda4b6dfdb0734bcb9aad02a34b7.STL.gz",
+          "sizeBytes": 485484,
+          "downloadBytes": 124579
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_ankle_x_link.STL",
+          "url": "assets/3e483c0e736c17ed9c36b33c004c052c1ca780f5.STL.gz",
+          "sizeBytes": 666384,
+          "downloadBytes": 154560
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_ankle_y_link.STL",
+          "url": "assets/1b1564f11f3afc5737320f1549e71bd54a22ace9.STL.gz",
+          "sizeBytes": 39484,
+          "downloadBytes": 7602
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_elbow_y_link.STL",
+          "url": "assets/3e6de3a5a4e99edd427ffe85cd803e0bfbd9bdd0.STL.gz",
+          "sizeBytes": 304184,
+          "downloadBytes": 69268
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_hand.STL",
+          "url": "assets/62310f6dad06c7aa5cdb17510c332493aa786dfc.STL.gz",
+          "sizeBytes": 400034,
+          "downloadBytes": 161721
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_hip_x_link.STL",
+          "url": "assets/07e55e3588f351d1884003802394902b76860cd1.STL.gz",
+          "sizeBytes": 321484,
+          "downloadBytes": 72669
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_hip_y_link.STL",
+          "url": "assets/9221546bde87bddded53e5957d34aa08a1d25552.STL.gz",
+          "sizeBytes": 200034,
+          "downloadBytes": 83949
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_hip_z_link.STL",
+          "url": "assets/b1bfb797227b150401693702cfcaa0bf001da9b9.STL.gz",
+          "sizeBytes": 300034,
+          "downloadBytes": 124384
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_knee_y_link.STL",
+          "url": "assets/797c0884bd20bcb572c8de3cc7d4260e989a23ca.STL.gz",
+          "sizeBytes": 250034,
+          "downloadBytes": 111701
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_shoulder_x_link.STL",
+          "url": "assets/fdd6d518547ffb2e8aaa61c97884caf368aeb5e9.STL.gz",
+          "sizeBytes": 323784,
+          "downloadBytes": 74623
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_shoulder_y_link.STL",
+          "url": "assets/bf14787c57f906853a1440ac789d69b55228e419.STL.gz",
+          "sizeBytes": 400034,
+          "downloadBytes": 144004
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_shoulder_z_link.STL",
+          "url": "assets/9b64274865f052c53b84c4f5a80f0beb951023ef.STL.gz",
+          "sizeBytes": 300034,
+          "downloadBytes": 123520
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_wrist_x_link_part.STL",
+          "url": "assets/485af5d7f66ce3fafd0c1c0167e6de476c5fcf49.STL.gz",
+          "sizeBytes": 861784,
+          "downloadBytes": 305381
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_wrist_x_link.STL",
+          "url": "assets/bb3940f5bb9de380d6045e8470f1f4655f045e0f.STL.gz",
+          "sizeBytes": 500084,
+          "downloadBytes": 203826
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_wrist_y_link.STL",
+          "url": "assets/28d9a2c476a02baaff5f799074599399eef3ac7f.STL.gz",
+          "sizeBytes": 400084,
+          "downloadBytes": 156129
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/l_wrist_z_link.STL",
+          "url": "assets/58130605d23548bca569281f45fd4b7fe261dcd2.STL.gz",
+          "sizeBytes": 187484,
+          "downloadBytes": 51304
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_ankle_x_link.STL",
+          "url": "assets/3e483c0e736c17ed9c36b33c004c052c1ca780f5.STL.gz",
+          "sizeBytes": 666384,
+          "downloadBytes": 154560
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_ankle_y_link.STL",
+          "url": "assets/32a10f78d5f6b87368cf4ab35a003defadef399e.STL.gz",
+          "sizeBytes": 39484,
+          "downloadBytes": 7612
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_elbow_y_link.STL",
+          "url": "assets/67c0c2ac3c66eac438f70402ac249284b2db3cbe.STL.gz",
+          "sizeBytes": 304184,
+          "downloadBytes": 69203
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_hand.STL",
+          "url": "assets/deeeed05c33dff8fe1256be0a64ddd67cbf88fcf.STL.gz",
+          "sizeBytes": 400034,
+          "downloadBytes": 161976
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_hip_x_link.STL",
+          "url": "assets/c6dc8013d2efc8dc3b8c84e5b18f7633100a0276.STL.gz",
+          "sizeBytes": 321484,
+          "downloadBytes": 72657
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_hip_y_link.STL",
+          "url": "assets/04e106c897d711d5478b36b20573c85e4fc69897.STL.gz",
+          "sizeBytes": 200084,
+          "downloadBytes": 84314
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_hip_z_link.STL",
+          "url": "assets/ec7efc927a1fab665465335e4811950bafa51459.STL.gz",
+          "sizeBytes": 300084,
+          "downloadBytes": 124801
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_knee_y_link.STL",
+          "url": "assets/29c80e5c762a89c924bdef5d13f402edff8087a5.STL.gz",
+          "sizeBytes": 250084,
+          "downloadBytes": 111020
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_shoulder_x_link.STL",
+          "url": "assets/666f17804f99c899092b8044168bda07c177657c.STL.gz",
+          "sizeBytes": 323784,
+          "downloadBytes": 74514
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_shoulder_y_link.STL",
+          "url": "assets/73d507d4dcdeba358e43f3f8c69e49cf3191cd22.STL.gz",
+          "sizeBytes": 400034,
+          "downloadBytes": 143617
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_shoulder_z_link.STL",
+          "url": "assets/d5134dadd755f0d7e27a35b14a924bee00d1f09a.STL.gz",
+          "sizeBytes": 300084,
+          "downloadBytes": 123365
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_wrist_x_link_part.STL",
+          "url": "assets/908ad3296e2587d8775a42df5501cb75ea76055d.STL.gz",
+          "sizeBytes": 861384,
+          "downloadBytes": 304567
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_wrist_x_link.STL",
+          "url": "assets/602d26eb576c9ee6bb132e8189dd77ba541f555f.STL.gz",
+          "sizeBytes": 499984,
+          "downloadBytes": 192460
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_wrist_y_link.STL",
+          "url": "assets/afa4c40040cf312bc4d54045f258803d047cade0.STL.gz",
+          "sizeBytes": 400084,
+          "downloadBytes": 136324
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/r_wrist_z_link.STL",
+          "url": "assets/335f6b3b58bf99fa46e132c24a9d5f9c72bbccda.STL.gz",
+          "sizeBytes": 187484,
+          "downloadBytes": 45514
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/torso_link.STL",
+          "url": "assets/07c03a279af79a512272f84336dd615c68140869.STL.gz",
+          "sizeBytes": 5000034,
+          "downloadBytes": 1950894
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/waist_x_link.STL",
+          "url": "assets/aa6244ee005cf054f13ab0ce9dcd949db208b800.STL.gz",
+          "sizeBytes": 200034,
+          "downloadBytes": 54728
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/waist_y_link.STL",
+          "url": "assets/ecf27ad243202eb926887152e23497a0a8502f9b.STL.gz",
+          "sizeBytes": 52684,
+          "downloadBytes": 10943
+        },
+        {
+          "path": "elf3_dof31_hand/urdf/meshes/waist_z_link.STL",
+          "url": "assets/bfb3746f3d726745fa390973289cd3a3da897571.STL.gz",
+          "sizeBytes": 500034,
+          "downloadBytes": 206697
+        }
+      ],
+      "repairs": [],
+      "sizeBytes": 21761864,
+      "downloadBytes": 7768597
+    },
+    {
+      "id": "elf3_dof29",
+      "label": "ELF3 · 29 DOF",
+      "urdf": "elf3_dof29/urdf/elf3.urdf",
+      "files": [
+        {
+          "path": "elf3_dof29/urdf/elf3.urdf",
+          "url": "assets/f6d62b9e4246708888814f7811cca85109e7db71.urdf",
+          "sizeBytes": 32216,
+          "downloadBytes": 32216
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/head_y_link.STL",
+          "url": "assets/3e7ce0a30f6d6182775ecdf888ef2a1285670097.STL.gz",
+          "sizeBytes": 4581784,
+          "downloadBytes": 1737421
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/head_z_link.STL",
+          "url": "assets/ddda71b9e752dda4b6dfdb0734bcb9aad02a34b7.STL.gz",
+          "sizeBytes": 485484,
+          "downloadBytes": 124579
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_ankle_x_link.STL",
+          "url": "assets/3e483c0e736c17ed9c36b33c004c052c1ca780f5.STL.gz",
+          "sizeBytes": 666384,
+          "downloadBytes": 154560
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_ankle_y_link.STL",
+          "url": "assets/1b1564f11f3afc5737320f1549e71bd54a22ace9.STL.gz",
+          "sizeBytes": 39484,
+          "downloadBytes": 7602
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_elbow_y_link.STL",
+          "url": "assets/3e6de3a5a4e99edd427ffe85cd803e0bfbd9bdd0.STL.gz",
+          "sizeBytes": 304184,
+          "downloadBytes": 69268
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_hip_x_link.STL",
+          "url": "assets/07e55e3588f351d1884003802394902b76860cd1.STL.gz",
+          "sizeBytes": 321484,
+          "downloadBytes": 72669
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_hip_y_link.STL",
+          "url": "assets/5b5f06eec0bcea5cfc888b40febd177b2c40875c.STL.gz",
+          "sizeBytes": 1175184,
+          "downloadBytes": 330060
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_hip_z_link.STL",
+          "url": "assets/7a2ec3f88a6a8056433da917aa8921cf536a9371.STL.gz",
+          "sizeBytes": 2236684,
+          "downloadBytes": 592921
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_knee_y_link.STL",
+          "url": "assets/e5b1467f3e23a5df81693cff296bb05099a38898.STL.gz",
+          "sizeBytes": 3479984,
+          "downloadBytes": 969655
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_shoulder_x_link.STL",
+          "url": "assets/fdd6d518547ffb2e8aaa61c97884caf368aeb5e9.STL.gz",
+          "sizeBytes": 323784,
+          "downloadBytes": 74623
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_shoulder_y_link.STL",
+          "url": "assets/54c2d955eb1d2ea11a86b15ec9bc763a6ab28580.STL.gz",
+          "sizeBytes": 1072784,
+          "downloadBytes": 298945
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_shoulder_z_link.STL",
+          "url": "assets/c0172dfb81181dd936ddc06e22a280e4bd21ec13.STL.gz",
+          "sizeBytes": 2131484,
+          "downloadBytes": 573738
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_wrist_x_link_part.STL",
+          "url": "assets/485af5d7f66ce3fafd0c1c0167e6de476c5fcf49.STL.gz",
+          "sizeBytes": 861784,
+          "downloadBytes": 305381
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_wrist_x_link.STL",
+          "url": "assets/17eccfccab41fa368331b9edfdf047878a3d8ef4.STL.gz",
+          "sizeBytes": 2839984,
+          "downloadBytes": 810486
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_wrist_y_link.STL",
+          "url": "assets/74e69d6382ee0b3adfe246b8a599a7fe1df1e688.STL.gz",
+          "sizeBytes": 1000284,
+          "downloadBytes": 290637
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/l_wrist_z_link.STL",
+          "url": "assets/58130605d23548bca569281f45fd4b7fe261dcd2.STL.gz",
+          "sizeBytes": 187484,
+          "downloadBytes": 51304
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_ankle_x_link.STL",
+          "url": "assets/3e483c0e736c17ed9c36b33c004c052c1ca780f5.STL.gz",
+          "sizeBytes": 666384,
+          "downloadBytes": 154560
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_ankle_y_link.STL",
+          "url": "assets/32a10f78d5f6b87368cf4ab35a003defadef399e.STL.gz",
+          "sizeBytes": 39484,
+          "downloadBytes": 7612
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_elbow_y_link.STL",
+          "url": "assets/67c0c2ac3c66eac438f70402ac249284b2db3cbe.STL.gz",
+          "sizeBytes": 304184,
+          "downloadBytes": 69203
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_hip_x_link.STL",
+          "url": "assets/c6dc8013d2efc8dc3b8c84e5b18f7633100a0276.STL.gz",
+          "sizeBytes": 321484,
+          "downloadBytes": 72657
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_hip_y_link.STL",
+          "url": "assets/ee0cb46812fe6579056894fc35d257118b93bf7f.STL.gz",
+          "sizeBytes": 1174184,
+          "downloadBytes": 333223
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_hip_z_link.STL",
+          "url": "assets/04883d41b6a5931ede7029f5a23f1d373d137ec8.STL.gz",
+          "sizeBytes": 2234384,
+          "downloadBytes": 591478
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_knee_y_link.STL",
+          "url": "assets/d9e6006067a6db90a0d82765967fcd1368cb3201.STL.gz",
+          "sizeBytes": 3479484,
+          "downloadBytes": 976646
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_shoulder_x_link.STL",
+          "url": "assets/666f17804f99c899092b8044168bda07c177657c.STL.gz",
+          "sizeBytes": 323784,
+          "downloadBytes": 74514
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_shoulder_y_link.STL",
+          "url": "assets/0053a34fe266b39ab52b8b463725422267865a94.STL.gz",
+          "sizeBytes": 1073384,
+          "downloadBytes": 301825
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_shoulder_z_link.STL",
+          "url": "assets/98d46ff391aea33435c53b8c5d6f5ab14288bb85.STL.gz",
+          "sizeBytes": 2132184,
+          "downloadBytes": 570399
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_wrist_x_link_part.STL",
+          "url": "assets/908ad3296e2587d8775a42df5501cb75ea76055d.STL.gz",
+          "sizeBytes": 861384,
+          "downloadBytes": 304567
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_wrist_x_link.STL",
+          "url": "assets/ce4a03c2ddbb478a42545daafada4e1ddc0925b9.STL.gz",
+          "sizeBytes": 2839984,
+          "downloadBytes": 738756
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_wrist_y_link.STL",
+          "url": "assets/3ceb87563d9e1779aa36f941f2e9e7728fe4e131.STL.gz",
+          "sizeBytes": 1000284,
+          "downloadBytes": 258984
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/r_wrist_z_link.STL",
+          "url": "assets/335f6b3b58bf99fa46e132c24a9d5f9c72bbccda.STL.gz",
+          "sizeBytes": 187484,
+          "downloadBytes": 45514
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/torso_link.STL",
+          "url": "assets/78fbea6a5534d14c72ac334d84d4cff916558ddf.STL.gz",
+          "sizeBytes": 5000034,
+          "downloadBytes": 1995875
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/waist_x_link.STL",
+          "url": "assets/93439784adb09bd6469d4b5c857df492acc0f180.STL.gz",
+          "sizeBytes": 445884,
+          "downloadBytes": 103763
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/waist_y_link.STL",
+          "url": "assets/ecf27ad243202eb926887152e23497a0a8502f9b.STL.gz",
+          "sizeBytes": 52684,
+          "downloadBytes": 10943
+        },
+        {
+          "path": "elf3_dof29/urdf/meshes/waist_z_link.STL",
+          "url": "assets/7f6c380e957086133f9aeaf0649aa7b425af3773.STL.gz",
+          "sizeBytes": 3542884,
+          "downloadBytes": 951329
+        }
+      ],
+      "repairs": [
+        {
+          "path": "meshes/head_z_link.STL",
+          "sourcePath": "resources/elf3_dof31/urdf/meshes/head_z_link.STL"
+        },
+        {
+          "path": "meshes/head_y_link.STL",
+          "sourcePath": "resources/elf3_dof31/urdf/meshes/head_y_link.STL"
+        }
+      ],
+      "sizeBytes": 47420022,
+      "downloadBytes": 14057913
+    },
+    {
+      "id": "elf3_dof29_hand",
+      "label": "ELF3 · 29 DOF · Hand",
+      "urdf": "elf3_dof29_hand/urdf/elf3.urdf",
+      "files": [
+        {
+          "path": "elf3_dof29_hand/urdf/elf3.urdf",
+          "url": "assets/484f225edd0388a3f9f1bf43c38c5f93d2c33fe6.urdf",
+          "sizeBytes": 32184,
+          "downloadBytes": 32184
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/head_y_link.STL",
+          "url": "assets/3e7ce0a30f6d6182775ecdf888ef2a1285670097.STL.gz",
+          "sizeBytes": 4581784,
+          "downloadBytes": 1737421
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/head_z_link.STL",
+          "url": "assets/ddda71b9e752dda4b6dfdb0734bcb9aad02a34b7.STL.gz",
+          "sizeBytes": 485484,
+          "downloadBytes": 124579
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_ankle_x_link.STL",
+          "url": "assets/3e483c0e736c17ed9c36b33c004c052c1ca780f5.STL.gz",
+          "sizeBytes": 666384,
+          "downloadBytes": 154560
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_ankle_y_link.STL",
+          "url": "assets/1b1564f11f3afc5737320f1549e71bd54a22ace9.STL.gz",
+          "sizeBytes": 39484,
+          "downloadBytes": 7602
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_elbow_y_link.STL",
+          "url": "assets/3e6de3a5a4e99edd427ffe85cd803e0bfbd9bdd0.STL.gz",
+          "sizeBytes": 304184,
+          "downloadBytes": 69268
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_hand.STL",
+          "url": "assets/62310f6dad06c7aa5cdb17510c332493aa786dfc.STL.gz",
+          "sizeBytes": 400034,
+          "downloadBytes": 161721
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_hip_x_link.STL",
+          "url": "assets/07e55e3588f351d1884003802394902b76860cd1.STL.gz",
+          "sizeBytes": 321484,
+          "downloadBytes": 72669
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_hip_y_link.STL",
+          "url": "assets/9221546bde87bddded53e5957d34aa08a1d25552.STL.gz",
+          "sizeBytes": 200034,
+          "downloadBytes": 83949
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_hip_z_link.STL",
+          "url": "assets/b1bfb797227b150401693702cfcaa0bf001da9b9.STL.gz",
+          "sizeBytes": 300034,
+          "downloadBytes": 124384
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_knee_y_link.STL",
+          "url": "assets/797c0884bd20bcb572c8de3cc7d4260e989a23ca.STL.gz",
+          "sizeBytes": 250034,
+          "downloadBytes": 111701
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_shoulder_x_link.STL",
+          "url": "assets/fdd6d518547ffb2e8aaa61c97884caf368aeb5e9.STL.gz",
+          "sizeBytes": 323784,
+          "downloadBytes": 74623
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_shoulder_y_link.STL",
+          "url": "assets/bf14787c57f906853a1440ac789d69b55228e419.STL.gz",
+          "sizeBytes": 400034,
+          "downloadBytes": 144004
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_shoulder_z_link.STL",
+          "url": "assets/9b64274865f052c53b84c4f5a80f0beb951023ef.STL.gz",
+          "sizeBytes": 300034,
+          "downloadBytes": 123520
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_wrist_x_link_part.STL",
+          "url": "assets/485af5d7f66ce3fafd0c1c0167e6de476c5fcf49.STL.gz",
+          "sizeBytes": 861784,
+          "downloadBytes": 305381
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_wrist_x_link.STL",
+          "url": "assets/bb3940f5bb9de380d6045e8470f1f4655f045e0f.STL.gz",
+          "sizeBytes": 500084,
+          "downloadBytes": 203826
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_wrist_y_link.STL",
+          "url": "assets/28d9a2c476a02baaff5f799074599399eef3ac7f.STL.gz",
+          "sizeBytes": 400084,
+          "downloadBytes": 156129
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/l_wrist_z_link.STL",
+          "url": "assets/58130605d23548bca569281f45fd4b7fe261dcd2.STL.gz",
+          "sizeBytes": 187484,
+          "downloadBytes": 51304
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_ankle_x_link.STL",
+          "url": "assets/3e483c0e736c17ed9c36b33c004c052c1ca780f5.STL.gz",
+          "sizeBytes": 666384,
+          "downloadBytes": 154560
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_ankle_y_link.STL",
+          "url": "assets/32a10f78d5f6b87368cf4ab35a003defadef399e.STL.gz",
+          "sizeBytes": 39484,
+          "downloadBytes": 7612
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_elbow_y_link.STL",
+          "url": "assets/67c0c2ac3c66eac438f70402ac249284b2db3cbe.STL.gz",
+          "sizeBytes": 304184,
+          "downloadBytes": 69203
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_hand.STL",
+          "url": "assets/deeeed05c33dff8fe1256be0a64ddd67cbf88fcf.STL.gz",
+          "sizeBytes": 400034,
+          "downloadBytes": 161976
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_hip_x_link.STL",
+          "url": "assets/c6dc8013d2efc8dc3b8c84e5b18f7633100a0276.STL.gz",
+          "sizeBytes": 321484,
+          "downloadBytes": 72657
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_hip_y_link.STL",
+          "url": "assets/04e106c897d711d5478b36b20573c85e4fc69897.STL.gz",
+          "sizeBytes": 200084,
+          "downloadBytes": 84314
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_hip_z_link.STL",
+          "url": "assets/ec7efc927a1fab665465335e4811950bafa51459.STL.gz",
+          "sizeBytes": 300084,
+          "downloadBytes": 124801
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_knee_y_link.STL",
+          "url": "assets/29c80e5c762a89c924bdef5d13f402edff8087a5.STL.gz",
+          "sizeBytes": 250084,
+          "downloadBytes": 111020
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_shoulder_x_link.STL",
+          "url": "assets/666f17804f99c899092b8044168bda07c177657c.STL.gz",
+          "sizeBytes": 323784,
+          "downloadBytes": 74514
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_shoulder_y_link.STL",
+          "url": "assets/73d507d4dcdeba358e43f3f8c69e49cf3191cd22.STL.gz",
+          "sizeBytes": 400034,
+          "downloadBytes": 143617
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_shoulder_z_link.STL",
+          "url": "assets/d5134dadd755f0d7e27a35b14a924bee00d1f09a.STL.gz",
+          "sizeBytes": 300084,
+          "downloadBytes": 123365
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_wrist_x_link_part.STL",
+          "url": "assets/908ad3296e2587d8775a42df5501cb75ea76055d.STL.gz",
+          "sizeBytes": 861384,
+          "downloadBytes": 304567
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_wrist_x_link.STL",
+          "url": "assets/602d26eb576c9ee6bb132e8189dd77ba541f555f.STL.gz",
+          "sizeBytes": 499984,
+          "downloadBytes": 192460
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_wrist_y_link.STL",
+          "url": "assets/afa4c40040cf312bc4d54045f258803d047cade0.STL.gz",
+          "sizeBytes": 400084,
+          "downloadBytes": 136324
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/r_wrist_z_link.STL",
+          "url": "assets/335f6b3b58bf99fa46e132c24a9d5f9c72bbccda.STL.gz",
+          "sizeBytes": 187484,
+          "downloadBytes": 45514
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/torso_link.STL",
+          "url": "assets/5950f79e2945fcda12d1b93915cdcc4742d26aef.STL.gz",
+          "sizeBytes": 1500034,
+          "downloadBytes": 671052
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/waist_x_link.STL",
+          "url": "assets/aa6244ee005cf054f13ab0ce9dcd949db208b800.STL.gz",
+          "sizeBytes": 200034,
+          "downloadBytes": 54728
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/waist_y_link.STL",
+          "url": "assets/ecf27ad243202eb926887152e23497a0a8502f9b.STL.gz",
+          "sizeBytes": 52684,
+          "downloadBytes": 10943
+        },
+        {
+          "path": "elf3_dof29_hand/urdf/meshes/waist_z_link.STL",
+          "url": "assets/bfb3746f3d726745fa390973289cd3a3da897571.STL.gz",
+          "sizeBytes": 500034,
+          "downloadBytes": 206697
+        }
+      ],
+      "repairs": [
+        {
+          "path": "meshes/head_z_link.STL",
+          "sourcePath": "resources/elf3_dof31_hand/urdf/meshes/head_z_link.STL"
+        },
+        {
+          "path": "meshes/head_y_link.STL",
+          "sourcePath": "resources/elf3_dof31_hand/urdf/meshes/head_y_link.STL"
+        }
+      ],
+      "sizeBytes": 18261858,
+      "downloadBytes": 6488749
+    }
+  ]
+}
