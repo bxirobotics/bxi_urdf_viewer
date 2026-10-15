@@ -13,6 +13,7 @@ import { MeasurementManager } from './MeasurementManager.js';
 /**
  * SceneManager - Core scene management and coordination
  * Delegates specialized tasks to dedicated managers
+ * BXI fork: frame newly loaded robots from the front.
  */
 export class SceneManager {
     constructor(canvas) {
@@ -432,7 +433,7 @@ export class SceneManager {
 
     /**
      * Auto-adjust camera position to fit model size
-     * View angle: oblique from side-back (looking at model from side-back)
+     * View angle: straight-on from the robot's forward X axis.
      * @param {THREE.Box3} bbox - Model bounding box
      * @param {THREE.Vector3} center - Model center point
      * @param {THREE.Vector3} size - Model dimensions
@@ -456,18 +457,12 @@ export class SceneManager {
         const limitingFovTangent = Math.tan(fov / 2) * Math.min(1, this.camera.aspect);
         const distance = maxDim / (2 * limitingFovTangent) * distanceMultiplier;
 
-        // Side-back oblique view:
-        // - From right-back (X positive + Z negative)
-        // - Slightly looking down (Y positive)
-        // Standard oblique angle: horizontal 135 degrees (back-side), vertical about 35 degrees
-        const horizontalAngle = Math.PI * 3 / 4;  // 135 degrees (right-back)
-        const verticalAngle = Math.PI / 6;        // 30 degrees (slightly looking down)
-
-        // Calculate camera position (relative to model center)
+        const horizontalAngle = isSingleMesh ? Math.PI * 3 / 4 : Math.PI / 2;
+        const verticalAngle = isSingleMesh ? Math.PI / 6 : 0;
         const cameraOffset = new THREE.Vector3(
-            distance * Math.cos(verticalAngle) * Math.sin(horizontalAngle),  // X: positive direction (right side)
-            distance * Math.sin(verticalAngle),                               // Y: positive direction (top)
-            -distance * Math.cos(verticalAngle) * Math.cos(horizontalAngle)  // Z: negative direction (back)
+            distance * Math.cos(verticalAngle) * Math.sin(horizontalAngle),
+            distance * Math.sin(verticalAngle),
+            -distance * Math.cos(verticalAngle) * Math.cos(horizontalAngle)
         );
 
         // Set camera position and target

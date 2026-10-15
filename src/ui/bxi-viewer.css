@@ -27,6 +27,7 @@
 [data-theme="light"] #bxi-model-select option { background: #ffffff; color: #202020; }
 #bxi-load-status { font-size: 11px; line-height: 1.6; color: var(--text-secondary); min-height: 18px; margin: 8px 0; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
 #bxi-load-status.error { color: #d75c53; }
+#bxi-load-status:empty { display: none; }
 #bxi-load-progress { width: 100%; height: 4px; accent-color: var(--accent); }
 .bxi-local-actions { display: flex; gap: 8px; margin-top: 12px; }
 .bxi-local-actions button { flex: 1; padding: 8px; }

@@ -72,7 +72,7 @@ export async function setupModelCatalog(app) {
                 app.fileHandler.onFilesLoaded?.(previousModels);
                 throw new Error(translate('loadFailed'));
             }
-            status.textContent = `${model.label} · ${(model.downloadBytes / 1024 / 1024).toFixed(1)} MB`;
+            status.textContent = '';
             const params = new URLSearchParams(location.search);
             params.set('model', model.id);
             history.replaceState(null, '', `${location.pathname}?${params}${location.hash}`);
