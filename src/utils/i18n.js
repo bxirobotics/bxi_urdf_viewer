@@ -1,5 +1,6 @@
 /**
  * 国际化工具 - 支持中文和英文
+ * BXI fork: viewer branding and built-in model loading messages.
  */
 
 // 获取版本号（构建时会替换为实际版本号）
@@ -7,6 +8,12 @@ const APP_VERSION = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : '
 
 export const translations = {
     'zh-CN': {
+        'bxiModel': '机器人型号',
+        'bxiLocalModel': '本地模型',
+        'bxiLoading': '正在加载模型',
+        'bxiRetry': '重试加载',
+        'bxiUsdUnavailable': '本版本未提供 USD 运行时，请使用 URDF、Xacro 或 MJCF。',
+        'bxiInspectionNote': '拖动关节查看姿态；“碰撞”显示碰撞几何，供人工检查。',
         // 顶部控制栏
         'visual': '视觉',
         'collision': '碰撞',
@@ -108,9 +115,9 @@ export const translations = {
         'noFileOpen': '未打开文件',
 
         // 帮助对话框
-        'helpTitle': `Robot Viewer v${APP_VERSION}`,
+        'helpTitle': `BXI URDF Viewer v${APP_VERSION}`,
         'about': '关于',
-        'aboutContent': 'Robot Viewer 是一个基于 Three.js 的网页端机器人模型 3D 查看器，提供直观的可视化界面，帮助您在浏览器中查看和分析机器人的结构、关节和物理属性，无需安装任何软件。<br><br>格式支持：URDF、Xacro、MJCF、USD（部分支持）<br>机器人类型：串联机器人结构（暂不支持并联机器人）<br><br>由 <strong>范子琦</strong> 开发。',
+        'aboutContent': 'BXI URDF Viewer 提供 ELF3 模型选择、关节调整和结构检查。预置模型由 CI 从 BXI 官方资源同步，本地文件仅在浏览器内处理。<br><br>基于 <strong>范子琦 / Ziqi Fan</strong> 开发的 Robot Viewer，保留上游版权与 Apache-2.0 许可证。<br>BXI Robotics 维护模型同步、部署与加载优化。',
         'projectHome': '项目主页',
         'email': '邮箱',
         'myGithub': '我的GitHub',
@@ -189,6 +196,12 @@ export const translations = {
         'fileType': '文件类型'
     },
     'en-US': {
+        'bxiModel': 'Robot model',
+        'bxiLocalModel': 'Local model',
+        'bxiLoading': 'Loading model',
+        'bxiRetry': 'Retry loading',
+        'bxiUsdUnavailable': 'This build excludes the USD runtime. Use URDF, Xacro or MJCF.',
+        'bxiInspectionNote': 'Move joints to inspect poses. Collision shows geometry for visual inspection.',
         // Top control bar
         'visual': 'Visual',
         'collision': 'Collision',
@@ -290,9 +303,9 @@ export const translations = {
         'noFileOpen': 'No File Open',
 
         // Help dialog
-        'helpTitle': `Robot Viewer v${APP_VERSION}`,
+        'helpTitle': `BXI URDF Viewer v${APP_VERSION}`,
         'about': 'About',
-        'aboutContent': 'Robot Viewer is a web-based 3D viewer for robot models and scenes. Built on top of Three.js, it provides an intuitive interface for visualizing, editing, and simulating robots directly in the browser without any installation required. This tool helps you visualize and analyze robot structures, joints, and physical properties.<br><br>Format Support: URDF, Xacro, MJCF, USD (partial support)<br>Robot Types: Serial robot structures (parallel robots not currently supported)<br><br>Developed by <strong>Ziqi Fan</strong>.',
+        'aboutContent': 'BXI URDF Viewer provides ELF3 model selection, joint controls and structure inspection. CI synchronizes built-in models from BXI resources. Local files are processed in your browser.<br><br>Based on Robot Viewer by <strong>Ziqi Fan</strong>. Original copyright and Apache-2.0 license retained.<br>Model synchronization, deployment and loading improvements maintained by BXI Robotics.',
         'projectHome': 'Project Home',
         'email': 'Email',
         'myGithub': 'My GitHub',

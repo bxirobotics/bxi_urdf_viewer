@@ -1,6 +1,7 @@
 /**
  * FileHandler - File handling module
  * Handles file drag-drop, loading, type detection, etc.
+ * BXI fork: return the loaded model so the catalog can report loading errors.
  */
 import * as THREE from 'three';
 import { ModelLoaderFactory } from '../loaders/ModelLoaderFactory.js';
@@ -325,6 +326,9 @@ export class FileHandler {
             // Handle USD format files (all USD formats use WASM)
             const isUSD = fileName.endsWith('.usd') || fileName.endsWith('.usda') ||
                          fileName.endsWith('.usdc') || fileName.endsWith('.usdz');
+            if (isUSD && !this.usdViewerInitializer) {
+                throw new Error(window.i18n.t('bxiUsdUnavailable'));
+            }
             if (isUSD) {
                 // Ensure USD viewer is initialized
                 if (!this.usdViewerManager && this.usdViewerInitializer) {
@@ -391,6 +395,7 @@ export class FileHandler {
             document.getElementById('drop-zone')?.classList.remove('show');
             document.getElementById('drop-zone')?.classList.remove('drag-over');
 
+            return model;
         } catch (error) {
             console.error('Failed to load file:', error);
 

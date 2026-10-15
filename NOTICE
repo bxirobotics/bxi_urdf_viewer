@@ -1,0 +1,25 @@
+BXI URDF Viewer
+https://github.com/bxirobotics/bxi_urdf_viewer
+
+This project is a modified fork of Robot Viewer by Ziqi Fan (范子琦):
+https://github.com/fan-ziqi/robot_viewer
+Original authors retain their copyright. The original Apache License 2.0
+is preserved in LICENSE. The original README is preserved in README.upstream.md.
+
+BXI Robotics modifications (2026): BXI branding and model selection,
+automated model synchronization and reference validation, lossless compressed
+and shared model assets, CI packaging, and ESA Pages deployment configuration.
+Modified upstream files carry BXI notices or are identified by their BXI package,
+workflow, or documentation titles.
+
+Robot URDF/STL assets are sourced from bxirobotics/bxi_controller_ros2.
+Their ownership and licensing are separate from this viewer's software license.
+The source repository currently has no repository-wide model license declaration.
+The viewer license does not grant additional rights to those model assets.
+
+See THIRD_PARTY_NOTICES.txt in the built website for installed production npm
+package licenses. The upstream vendored USD resources are retained in this fork's
+source history but excluded from the built website. Their precise commercial
+grant is unverified; the current needle-tools/usd-viewer upstream license is
+PolyForm Noncommercial 1.0.0:
+https://github.com/needle-tools/usd-viewer/blob/main/LICENSE.txt

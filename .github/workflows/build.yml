@@ -1,0 +1,71 @@
+name: Build BXI viewer
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bxi-viewer-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+      - name: Download BXI models, build and check ESA limits
+        run: pnpm build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bxi-urdf-viewer
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+
+  publish:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: bxi-urdf-viewer
+          path: ${{ runner.temp }}/bxi-site
+      - name: Publish the prebuilt website to the site branch
+        shell: bash
+        run: |
+          if git ls-remote --exit-code --heads origin site; then
+            git fetch origin site
+            git checkout -B site FETCH_HEAD
+          else
+            git checkout --orphan site
+          fi
+          git rm -rf .
+          cp -a "$RUNNER_TEMP/bxi-site/." .
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish BXI viewer from $GITHUB_SHA"
+            git push origin HEAD:site
+          fi

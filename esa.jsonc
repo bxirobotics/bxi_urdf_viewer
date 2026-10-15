@@ -1,0 +1,8 @@
+{
+  "name": "bxi-urdf-viewer",
+  "installCommand": "npx --yes pnpm@9.0.0 install --frozen-lockfile",
+  "buildCommand": "npx --yes pnpm@9.0.0 run build",
+  "assets": {
+    "directory": "./dist"
+  }
+}

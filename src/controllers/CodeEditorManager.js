@@ -1,6 +1,7 @@
 /**
  * CodeEditorManager - Code editor management module
  * Responsible for complete code editor functionality: open, close, save, reload, etc.
+ * BXI fork: start with the editor closed so the robot remains visible.
  */
 import { CodeEditor } from '../editor/CodeEditor.js';
 import { readFileContent } from '../utils/FileUtils.js';
@@ -114,10 +115,6 @@ export class CodeEditorManager {
         const reloadBtn = document.getElementById('reload-btn');
 
         if (!openEditorBtn || !editorPanel) return;
-
-        // Show editor by default
-        editorPanel.classList.add('visible');
-        openEditorBtn.classList.add('active');
 
         // Open/close editor
         openEditorBtn.addEventListener('click', async () => {

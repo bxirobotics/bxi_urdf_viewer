@@ -1,6 +1,7 @@
 /**
  * Application main entry point
  * Integrates all modules
+ * BXI fork: initialize the bundled model catalog and keep its XML editor closed.
  */
 import * as THREE from 'three';
 import * as d3 from 'd3';
@@ -19,7 +20,9 @@ import { i18n } from './utils/i18n.js';
 import { PoseController } from './animation/runtime/PoseController.js';
 import { AnimationWorkspace } from './animation/ui/AnimationWorkspace.js';
 import { MobileLayout } from './ui/MobileLayout.js';
+import { setupModelCatalog } from './controllers/ModelCatalog.js';
 import './ui/mobile-layout.css';
+import './ui/bxi-viewer.css';
 
 // Expose d3 globally for PanelManager
 window.d3 = d3;
@@ -136,10 +139,7 @@ class App {
             this.fileHandler = new FileHandler();
             this.fileHandler.setupFileDrop();
 
-            // Set USD viewer lazy loading
-            this.fileHandler.setUSDViewerInitializer(async () => {
-                return await this.getUSDViewerManager();
-            });
+            // BXI excludes the vendored USD runtime from deployment pending license verification.
 
             this.fileHandler.onFilesLoaded = (files) => {
                 if (this.fileTreeView) {
@@ -284,6 +284,8 @@ class App {
 
             // Start render loop
             this.animate();
+
+            await setupModelCatalog(this);
 
         } catch (error) {
             console.error('Initialization error:', error);
@@ -582,7 +584,7 @@ class App {
             const editorPanel = document.getElementById('code-editor-panel');
             if (editorPanel && this.codeEditorManager) {
                 // Keep the mobile viewer on its current drawer after loading.
-                if (!this.mobileLayout?.media.matches) editorPanel.classList.add('visible');
+                if (!file.bxiCatalogModel && !this.mobileLayout?.media.matches) editorPanel.classList.add('visible');
                 const openEditorBtn = document.getElementById('open-editor-btn');
                 if (openEditorBtn && editorPanel.classList.contains('visible')) {
                     openEditorBtn.classList.add('active');

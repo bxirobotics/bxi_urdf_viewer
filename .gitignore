@@ -28,3 +28,6 @@ Thumbs.db
 # Cache
 .cache/
 
+# Generated from bxirobotics/bxi_controller_ros2 by models:sync
+public/robots/
+

@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="color-scheme" content="dark light">
-    <title>Robot Viewer</title>
+    <!-- BXI fork of fan-ziqi/robot_viewer; original license and attribution retained. -->
+    <title>BXI URDF Viewer</title>
+    <meta name="description" content="BXI ELF3 机器人在线 URDF 查看器：选择模型、调整关节、查看碰撞几何与测量。">
     <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <link rel="alternate icon" href="./favicon.svg">
     <!-- Blocking script: Set theme before rendering any content -->
@@ -3031,6 +3033,19 @@
                     <button class="panel-maximize-btn" data-panel-id="floating-files-panel">⛶</button>
                     <button class="panel-close-btn" data-panel="floating-files-panel">✕</button>
                 </div>
+                <section class="bxi-catalog" aria-label="BXI robot models">
+                    <div class="bxi-brand"><strong>BXI</strong><span>URDF Viewer</span></div>
+                    <label for="bxi-model-select" data-i18n="bxiModel"></label>
+                    <select id="bxi-model-select" disabled></select>
+                    <p id="bxi-load-status" role="status" aria-live="polite"></p>
+                    <progress id="bxi-load-progress" max="1" value="0" aria-label="Model download" hidden></progress>
+                    <button id="bxi-retry" class="control-button" data-i18n="bxiRetry" hidden></button>
+                    <div class="bxi-local-actions">
+                        <button id="bxi-local-folder" class="control-button" data-i18n="loadFolder"></button>
+                        <button id="bxi-local-files" class="control-button" data-i18n="loadFiles"></button>
+                    </div>
+                    <p class="bxi-inspection-note" data-i18n="bxiInspectionNote"></p>
+                </section>
                 <div class="floating-panel-content" id="model-list">
                     <div class="empty-state" data-i18n="noFolder"></div>
                 </div>
