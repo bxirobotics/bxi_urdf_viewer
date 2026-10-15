@@ -1,0 +1,8 @@
+{
+  "name": "bxi-urdf-viewer",
+  "installCommand": "",
+  "buildCommand": "",
+  "assets": {
+    "directory": "./"
+  }
+}

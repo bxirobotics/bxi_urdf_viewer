@@ -3,6 +3,6 @@
   "installCommand": "",
   "buildCommand": "",
   "assets": {
-    "directory": "./"
+    "directory": "./dist"
   }
 }
