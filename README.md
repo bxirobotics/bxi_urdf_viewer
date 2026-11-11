@@ -6,11 +6,11 @@
 
 ## 使用
 
-- 打开网页默认以正视角加载 ELF3 31 自由度模型；左侧型号菜单支持 29/31 自由度及 Hand 版本。切换型号后同样从正面显示。
+- 打开网页默认以正视角加载 ELF3 31 自由度模型；左侧型号菜单自动列出上游 `resources` 中的全部 URDF，包括 29/31 自由度、ModelHand、Gripper 等版本。切换型号后同样从正面显示。
 - 拖动关节滑块或机器人关节查看姿态；默认遵守 URDF 关节限位。
 - 顶部“视觉 / 碰撞”控制外观和碰撞几何显示；关节、结构、编辑面板可独立开关。
 - “加载文件夹”可以打开本地 URDF 及其网格；也支持拖入文件夹或选择多个文件。本地文件在浏览器内处理。
-- URL 的 `?model=elf3_dof31_hand` 参数可以直接分享指定型号。
+- URL 的 `?model=elf3_dof31_head1_modelhand` 参数可以直接分享指定型号。
 
 **工程检查范围：**这里提供人工姿态和几何检查，不提供自动碰撞报警、最小表面间隙或 CAD 级干涉判定。当前 BXI 模型部分 collision 块被上游注释，不能将“显示碰撞几何”当作完整碰撞检测。
 
@@ -36,7 +36,7 @@ corepack pnpm preview
 
 ## 模型同步与加载优化
 
-模型来自官方 [bxi_controller_ros2/resources](https://github.com/bxirobotics/bxi_controller_ros2/tree/main/resources)。每次同步先解析一个上游提交 SHA，所有 URDF 和 STL 均从同一提交下载，并核验 Git blob 哈希，避免混合版本或不完整文件。
+模型来自官方 [bxi_controller_ros2/resources](https://github.com/bxirobotics/bxi_controller_ros2/tree/main/resources)，递归发现其中全部 `.urdf` 文件，新增、改名的型号无需修改固定列表。每次同步先解析一个上游提交 SHA，所有 URDF 和 STL 均从同一提交下载，并核验 Git blob 哈希，避免混合版本或不完整文件。
 
 - 网页只下载当前选中的型号，不在首屏下载全部模型。
 - STL 使用 gzip **无损压缩**，不简化网格、不修改几何精度。浏览器通过 `DecompressionStream` 解压，需使用当前 Chrome、Edge、Firefox 或 Safari。
@@ -44,7 +44,7 @@ corepack pnpm preview
 - 下载最多并行 6 个资源，提供进度、错误和重试状态。
 - 模型目录和发布产物不提交到 `main`，生成记录位于 `robots/catalog.json`，其中包含上游提交、原始路径和资源体积。
 
-上游两个 29 自由度版本缺少已引用的 `head_y_link.STL` 与 `head_z_link.STL`。同步脚本仅对这两个已知缺项，从同一提交的对应 31 自由度版本补齐，写入 catalog 的 `repairs` 字段；URDF 关节、尺寸和限位保持原样。其他缺失引用会导致构建失败。
+上游两个 29 自由度版本缺少已引用的 `head_y_link.STL` 与 `head_z_link.STL`。同步脚本仅对这两个已知缺项，从同一提交的对应 31 自由度版本补齐（兼容上游当前 Head1 / ModelHand 目录名称），写入 catalog 的 `repairs` 字段；URDF 关节、尺寸和限位保持原样。其他缺失引用会导致构建失败。
 
 需要复现某个模型快照时，将环境变量 `BXI_MODELS_REF` 设置为 catalog 中的提交 SHA；默认跟踪上游 `main`。本地未认证 GitHub API 有速率限制，可在构建环境提供 `GITHUB_TOKEN`，令牌只用于构建，不进入网页。
 
@@ -52,7 +52,7 @@ corepack pnpm preview
 
 [Build BXI viewer](https://github.com/bxirobotics/bxi_urdf_viewer/actions/workflows/build.yml) 在 `main` 更新、PR、手动触发及每日 **02:00 UTC / 北京时间 10:00** 运行：
 
-定时和手动任务先比较上游四个型号 `urdf/` 目录的 Git tree 哈希与 `site` 已发布记录。资源未变就结束检查，跳过依赖安装、模型下载、构建和发布，ESA 也不会收到新的 `site` 提交。上游其他代码变化不会触发网页重建；四个目录内文件的新增、修改或删除都会改变对应目录哈希。本仓库提交和 PR 仍正常构建，以保证网页源码修改可以发布。
+定时和手动任务先比较上游整个 `resources/` 目录的 Git tree 哈希与 `site` 已发布记录。资源未变就结束检查，跳过依赖安装、模型下载、构建和发布，ESA 也不会收到新的 `site` 提交。上游其他代码变化不会触发网页重建；`resources/` 内任何文件的新增、修改或删除都会触发更新，包括新增 URDF 型号。本仓库提交和 PR 仍正常构建，以保证网页源码修改可以发布。
 
 检测到资源变化时会固定本轮检测到的上游提交；首次没有发布记录时也会完整构建。检查出错会使任务失败，不会当作“没有变化”跳过。
 
@@ -60,7 +60,7 @@ corepack pnpm preview
 2. 下载、校验并无损压缩 BXI 模型，构建完整静态网站。
 3. 检查单文件不超过 25 MB、文件数不超过 2,000；同时以未压缩总大小不超过 1,024 MB 作保守包体检查。
 4. 上传 `bxi-urdf-viewer` 构建 artifact，可下载为 ZIP。
-5. 对 `main` 的成功构建，将网页提交到 **`site` 分支**；PR 不发布。没有变化时不创建新提交。
+5. 对 `main` 的成功构建，以 **`update urdf`** 为提交标题将网页提交到 **`site` 分支**；PR 不发布。没有变化时不创建新提交。
 
 **推荐 ESA 直接部署 `site` 分支**，无需阿里云构建环境访问 GitHub 下载模型：
 
@@ -77,7 +77,7 @@ corepack pnpm preview
 
 `site` 分支自带 `esa.jsonc`，已声明跳过安装和构建。首次需在 ESA 控制台授权该仓库并选定生产分支，之后 CI 生成的新提交会触发 ESA 自动部署。请关闭其他分支的预览构建，避免重复构建 `main`。函数文件路径和环境变量留空；Node.js 版本保持 `22.x`。
 
-如保持截图中的 `main` 生产分支，根目录的 `esa.jsonc` 同样支持完整源码构建：项目名为 `bxi_urdf_viewer`，独立安装阶段留空，在构建命令中安装锁定的 pnpm 依赖并构建 `dist/`。此方式需要 ESA 构建环境能够访问 GitHub 和 npm；每日 CI 同步的新产物发布在 `site` 分支。
+如保持截图中的 `main` 生产分支，根目录的 `esa.jsonc` 同样支持完整源码构建：项目名为 `bxi_urdf_viewer`，独立安装阶段留空，在构建命令中安装锁定的 pnpm 依赖并构建 `dist/`。此方式需要 ESA 构建环境能够访问 GitHub 和 npm；每日 CI 同步的新产物仅发布在 `site` 分支，因此要实现上游资源变化后的自动部署，应将 ESA 生产分支设为 `site`。
 
 官方文档：[GitHub 导入与生产分支](https://help.aliyun.com/zh/edge-security-acceleration/esa/user-guide/connect-pages-to-github)、[构建配置](https://help.aliyun.com/zh/edge-security-acceleration/esa/user-guide/build-pages)、[当前平台限制](https://help.aliyun.com/zh/edge-security-acceleration/esa/user-guide/what-is-functions-and-pages/)。ESA 的服务额度、费用和域名接入条件以账号所选服务条款为准；软件许可证不涵盖托管服务费用或授权。
 

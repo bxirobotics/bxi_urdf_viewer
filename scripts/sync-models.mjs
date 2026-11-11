@@ -5,15 +5,26 @@ import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
 export const repository = 'bxirobotics/bxi_controller_ros2';
-export const models = [
-    { id: 'elf3_dof31', label: 'ELF3 · 31 DOF' },
-    { id: 'elf3_dof31_hand', label: 'ELF3 · 31 DOF · Hand' },
-    { id: 'elf3_dof29', label: 'ELF3 · 29 DOF' },
-    { id: 'elf3_dof29_hand', label: 'ELF3 · 29 DOF · Hand' }
-];
+
+export function discoverModels(tree) {
+    const models = tree.filter(entry => entry.type === 'blob' && /^resources\/.+\.urdf$/i.test(entry.path))
+        .map(entry => {
+            const parts = entry.path.slice('resources/'.length).split('/');
+            const directory = parts.length > 1 ? parts.shift() : '';
+            const urdf = parts.join('/');
+            const primary = urdf === 'urdf/elf3.urdf' || urdf === `urdf/${directory}.urdf`;
+            const suffix = urdf.slice(0, -5).replaceAll('/', '__');
+            const id = primary ? directory : [directory, suffix].filter(Boolean).join('__');
+            const label = primary ? directory : [directory, urdf].filter(Boolean).join(' · ');
+            return { id, label, directory, urdf };
+        }).sort((a, b) => a.id.localeCompare(b.id));
+    if (!models.length) throw new Error('No URDF files found in resources');
+    if (new Set(models.map(model => model.id)).size !== models.length) throw new Error('Duplicate model IDs');
+    return models;
+}
 
 export function planModelFiles(model, xml, tree) {
-    const prefix = `resources/${model.id}/urdf/`;
+    const prefix = model.directory ? `resources/${model.directory}/` : 'resources/';
     const files = new Map(tree.filter(entry => entry.type === 'blob' && entry.path.startsWith(prefix))
         .map(entry => [entry.path.slice(prefix.length), entry]));
     const repairs = [];
@@ -23,20 +34,20 @@ export function planModelFiles(model, xml, tree) {
         throw new Error(`${model.id}: expected a URDF robot with mesh references`);
     }
     for (const [, reference] of references) {
-        const path = posix.normalize(reference.replaceAll('\\', '/'));
-        if (!path.startsWith('meshes/') || path.includes(':') || path.includes('../')) {
+        const path = posix.join(posix.dirname(model.urdf), reference.replaceAll('\\', '/'));
+        if (reference.startsWith('/') || path.includes(':') || path.startsWith('../')) {
             throw new Error(`${model.id}: unsupported mesh path ${reference}`);
         }
         if (files.has(path)) continue;
         // shortcut: upstream 29-DOF models omit two fixed-head meshes; remove this repair when upstream includes them.
-        const fallback = model.id.replace('dof29', 'dof31');
-        const sourcePath = `resources/${fallback}/urdf/${path}`;
-        const entry = /^(meshes\/head_[yz]_link\.STL)$/.test(path) && fallback !== model.id
-            ? tree.find(candidate => candidate.type === 'blob' && candidate.path === sourcePath)
+        const fallbacks = [model.directory.replace('dof29', 'dof31'),
+            model.directory === 'elf3_dof29_hand' ? 'elf3_dof31_head1_modelhand' : 'elf3_dof31_head1'];
+        const entry = /^urdf\/meshes\/head_[yz]_link\.STL$/.test(path) && /^elf3_dof29(_hand)?$/.test(model.directory)
+            ? fallbacks.map(fallback => tree.find(candidate => candidate.type === 'blob' && candidate.path === `resources/${fallback}/${path}`)).find(Boolean)
             : null;
         if (!entry) throw new Error(`${model.id}: missing mesh ${reference}`);
         files.set(path, entry);
-        repairs.push({ path, sourcePath });
+        repairs.push({ path, sourcePath: entry.path });
     }
     return { files: [...files].sort(([a], [b]) => a.localeCompare(b)), repairs };
 }
@@ -52,40 +63,37 @@ export async function request(url, json = false) {
 }
 
 export function getResourceTrees(tree) {
-    return Object.fromEntries(models.map(({ id }) => {
-        const path = `resources/${id}/urdf`;
-        const entry = tree.find(item => item.path === path && item.type === 'tree');
-        if (!entry) throw new Error(`Missing model resource directory: ${path}`);
-        return [path, entry.sha];
-    }));
+    const entry = tree.find(item => item.path === 'resources' && item.type === 'tree');
+    if (!entry) throw new Error('Missing model resource directory: resources');
+    return { resources: entry.sha };
 }
 
-export async function getModelSnapshot() {
-    const ref = process.env.BXI_MODELS_REF || 'main';
+export async function getModelSnapshot(ref = process.env.BXI_MODELS_REF || 'main') {
     const { sha: commit } = await request(`https://api.github.com/repos/${repository}/commits/${encodeURIComponent(ref)}`, true);
     const { tree, truncated } = await request(`https://api.github.com/repos/${repository}/git/trees/${commit}?recursive=1`, true);
     if (truncated) throw new Error('GitHub returned an incomplete resource tree');
-    return { commit, tree, resourceTrees: getResourceTrees(tree) };
+    return { commit, tree, resourceTrees: getResourceTrees(tree), models: discoverModels(tree) };
 }
 
 export async function syncModels() {
-    const { commit, tree, resourceTrees } = await getModelSnapshot();
+    const { commit, tree, resourceTrees, models } = await getModelSnapshot();
     const rawBase = `https://raw.githubusercontent.com/${repository}/${commit}/`;
     const cache = new URL('../.cache/', import.meta.url);
     const output = new URL('../public/robots/', import.meta.url);
     await mkdir(cache, { recursive: true });
     const staging = await mkdtemp(fileURLToPath(new URL('robots-', cache)));
-    const catalog = { source: { repository, commit, resourceTrees }, defaultModel: models[0].id, models: [] };
+    const defaultModel = models.find(model => model.id === 'elf3_dof31') || models.find(model => model.id === 'elf3_dof31_head1') || models[0];
+    const catalog = { source: { repository, commit, resourceTrees }, defaultModel: defaultModel.id, models: [] };
     const assets = new Map();
     try {
         for (const model of models) {
-            const urdfPath = `resources/${model.id}/urdf/elf3.urdf`;
+            const urdfPath = posix.join('resources', model.directory, model.urdf);
             const xml = (await request(rawBase + urdfPath)).toString('utf8');
             const { files, repairs } = planModelFiles(model, xml, tree);
-            const record = { ...model, urdf: `${model.id}/urdf/elf3.urdf`, files: [], repairs, sizeBytes: 0, downloadBytes: 0 };
+            const record = { ...model, urdf: posix.join(model.directory, model.urdf), files: [], repairs, sizeBytes: 0, downloadBytes: 0 };
             for (let offset = 0; offset < files.length; offset += 6) {
                 await Promise.all(files.slice(offset, offset + 6).map(async ([relativePath, entry]) => {
-                    const path = `${model.id}/urdf/${relativePath}`;
+                    const path = posix.join(model.directory, relativePath);
                     const compressed = /\.stl$/i.test(relativePath);
                     const url = `assets/${entry.sha}${extname(relativePath)}${compressed ? '.gz' : ''}`;
                     if (!assets.has(url)) {

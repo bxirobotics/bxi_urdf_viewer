@@ -9,7 +9,7 @@ export function modelResourcesChanged(previous, current) {
 }
 
 export async function checkModelUpdates() {
-    const snapshot = await getModelSnapshot();
+    const snapshot = await getModelSnapshot('main');
     const viewerRepository = process.env.GITHUB_REPOSITORY || 'bxirobotics/bxi_urdf_viewer';
     let catalog;
     try {
